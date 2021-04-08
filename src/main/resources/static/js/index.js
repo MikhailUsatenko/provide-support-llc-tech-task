@@ -4,7 +4,7 @@ documentReady(async function () {
     await initializeMonitoringRequest();
     displayMonitoringRequest();
     addEventListenerFunction("form.add_monitoring_request_form", 'submit', addMonitoringRequest);
-    setInterval(updateMonitoringRequest, 1800000);
+    setInterval(updateMonitoringRequest, 30000);
 });
 
 function displayMonitoringRequest() {
