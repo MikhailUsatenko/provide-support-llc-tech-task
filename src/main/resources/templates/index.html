@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+
+    <title>Usatenko Tech Task</title>
+</head>
+<body>
+
+<audio id="warning_sound">
+    <!-- provide the address of the sound to be played -->
+    <source src="https://media.geeksforgeeks.org/wp-content/uploads/20190531135120/beep.mp3">
+</audio>
+
+<header class="p-3 mb-3 border-bottom">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bootstrap-fill" viewBox="0 0 16 16">
+                    <path d="M6.375 7.125V4.658h1.78c.973 0 1.542.457 1.542 1.237 0 .802-.604 1.23-1.764 1.23H6.375zm0 3.762h1.898c1.184 0 1.81-.48 1.81-1.377 0-.885-.65-1.348-1.886-1.348H6.375v2.725z"/>
+                    <path d="M4.002 0a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4V4a4 4 0 0 0-4-4h-8zm1.06 12V3.545h3.399c1.587 0 2.543.809 2.543 2.11 0 .884-.65 1.675-1.483 1.816v.1c1.143.117 1.904.931 1.904 2.033 0 1.488-1.084 2.396-2.888 2.396H5.062z"/>
+                </svg>
+            </a>
+
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="#creating_header" class="nav-link px-2 link-dark">Creating request</a></li>
+                <li><a href="#monitoring_header" class="nav-link px-2 link-dark">Monitoring requests</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+<div class="container" id="creating_header">
+    <h1>Creating of new monitoring request</h1>
+</div>
+<div class="container">
+    <div class="row">
+        <form class="row g-3 add_monitoring_request_form">
+            <div class="col-md-6">
+                <label for="validationDefault01" class="form-label">Monitoring period time Value</label>
+                <input type="number" min="1" class="form-control" id="validationDefault01" name="monitoringPeriodDelay" required>
+            </div>
+            <div class="col-md-6">
+                <label for="validationDefault04" class="form-label">Monitoring period time Unit</label>
+                <select class="form-select monitoringPeriodTimeUnit" id="validationDefault04" name="monitoringPeriodTimeUnit " required>
+                    <option selected disabled value="">Choose...</option>
+                    <option value="SECONDS" >seconds</option>
+                    <option value="MINUTES" >minutes</option>
+                </select>
+            </div>
+            <hr>
+            <div class="col-md-6">
+                <label for="validationDefault03" class="form-label">URL</label>
+                <input type="text" class="form-control" id="validationDefault03" name="url" required>
+            </div>
+            <div class="col-md-3">
+                <label for="validationDefault02" class="form-label">OK Response Time(in seconds)</label>
+                <input type="number"min="1" class="form-control" id="validationDefault02" name="okResponseTime" required>
+            </div>
+            <div class="col-md-3">
+                <label for="validationDefaultUsername" class="form-label">WARNING Response Time(in seconds)</label>
+                <input type="number" min="2"  class="form-control" id="validationDefaultUsername" name="warningResponseTime"
+                       aria-describedby="inputGroupPrepend2" required>
+            </div>
+            <hr>
+            <div class="col-md-3">
+                <label for="okResponseStatus" class="form-label">OK Response Status</label>
+                <select class="form-select okResponseStatus" id="okResponseStatus" name="okResponseStatus" required>
+                    <option selected disabled value="">Choose...</option>
+                    <option value="OK" >OK</option>
+                    <option value="BAD_REQUEST" >BAD REQUEST</option>
+                    <option value="INTERNAL_SERVER_ERROR" >INTERNAL SERVER ERROR</option>
+                    <option value="NOT_FOUND" >NOT FOUND</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="substringInResponse" class="form-label">Substring In Response(optional)</label>
+                <input type="text" class="form-control" id="substringInResponse" name="substringInResponse">
+            </div>
+            <div class="col-md-3">
+                <label for="minResponseSize" class="form-label">Min Response Size(in bytes)</label>
+                <input type="number" min="1" class="form-control" id="minResponseSize" name="minResponseSize" required>
+            </div>
+            <div class="col-md-3">
+                <label for="maxResponseSize" class="form-label">Max Response Size(in bytes)</label>
+                <input type="number" min="2" class="form-control" id="maxResponseSize" name="maxResponseSize" required>
+            </div>
+            <hr>
+            <div class="col-12">
+                <button class="btn btn-primary" type="submit">Add monitoring request</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="container mt-5" id="monitoring_header">
+    <h1>Monitoring of existing request</h1>
+</div>
+<div class="container mt-3">
+    <div class="row">
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">URL</th>
+                <th scope="col">Status</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody class="monitoring_request_table_body">
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/content/js/module/httpModule.js"></script>
+<script src="/content/js/module/jqueryDocumentModule.js"></script>
+<script src="/content/js/index.js"></script>
+</body>
+</html>
