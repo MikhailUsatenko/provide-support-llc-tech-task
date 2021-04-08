@@ -1,0 +1,44 @@
+spring:
+  profiles:
+    active: local
+# Global configuration
+---
+spring:
+  main:
+    banner-mode: "off"
+    multipart:
+      enabled: false
+
+server:
+  address: 127.0.0.1
+  port: 8090
+---
+spring:
+  profiles: local
+  application:
+    name: provide-support-tech-task
+  main:
+    banner-mode: "off"
+    allow-bean-definition-overriding: true
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+      enabled: true
+  thymeleaf:
+    cache: false
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: monitoring
+      authentication-database: admin
+      username: admin
+      password: admin
+server:
+  address: 127.0.0.1
+  port: 8090
+  compression:
+    enabled: true
+    mime-types: text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json
+    min-response-size: 1024

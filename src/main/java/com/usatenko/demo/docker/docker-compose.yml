@@ -1,0 +1,13 @@
+version: '2'
+services:
+  mongodb:
+    image: mongo:latest
+    restart: always
+    container_name: docker_container_monitoring_mongodb
+    mem_limit: 1G
+    environment:
+      MONGO_INITDB_ROOT_USERNAME : "admin"
+      MONGO_INITDB_ROOT_PASSWORD : "admin"
+      MONGO_INITDB_DATABASE : "monitoring"
+    ports:
+    - 27017:27017
